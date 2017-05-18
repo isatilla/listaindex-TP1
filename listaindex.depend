@@ -1,0 +1,41 @@
+# depslib dependency file v1.0
+1495074740 source:c:\users\isa\dropbox\2017\estructuras de datos y análisis de algoritmos\listaindex\main.cpp
+	<iostream>
+	<limits>
+	<string>
+	<sstream>
+	"include/ListaPlantilla.h"
+	"include/ListaIndexArreglo.h"
+	"include/LIndexLSE.h"
+
+1494907765 c:\users\isa\dropbox\2017\estructuras de datos y análisis de algoritmos\listaindex\include\listaplantilla.h
+
+1494907877 c:\users\isa\dropbox\2017\estructuras de datos y análisis de algoritmos\listaindex\include\listaarray.h
+	<cstdlib>
+
+1494907875 source:c:\users\isa\dropbox\2017\estructuras de datos y análisis de algoritmos\listaindex\src\listaarray.cpp
+	"ListaArray.h"
+
+1494907763 source:c:\users\isa\dropbox\2017\estructuras de datos y análisis de algoritmos\listaindex\src\listaplantilla.cpp
+
+1494907982 source:c:\users\isa\dropbox\2017\estructuras de datos y análisis de algoritmos\listaindex\src\listaindexarreglo.cpp
+	"ListaIndexArreglo.h"
+
+1494989520 c:\users\isa\dropbox\2017\estructuras de datos y análisis de algoritmos\listaindex\include\listaindexarreglo.h
+	<cstdlib>
+
+1494979400 source:c:\users\isa\dropbox\2017\estructuras de datos y análisis de algoritmos\listaindex\src\listaindexlse.cpp
+	"ListaIndexLSE.h"
+
+1495057538 c:\users\isa\dropbox\2017\estructuras de datos y análisis de algoritmos\listaindex\include\listaindexlse.h
+	"ListaPlantilla.h"
+	<cstdlib>
+	<iostream>
+
+1495058477 source:c:\users\isa\dropbox\2017\estructuras de datos y análisis de algoritmos\listaindex\src\lindexlse.cpp
+	"LIndexLSE.h"
+
+1495075138 c:\users\isa\dropbox\2017\estructuras de datos y análisis de algoritmos\listaindex\include\lindexlse.h
+	<cstdlib>
+	<iostream>
+
