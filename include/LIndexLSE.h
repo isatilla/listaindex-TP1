@@ -35,12 +35,16 @@ public:
         Vaciar();
     }
 
+    void Destruir()
+    {
+        Vaciar();
+    }
     bool Vacia()
     {
         return num_elem == 0;
     };
 
-    virtual E Recuperar(int p)   //debe darse un Ìndice v·lido
+    virtual E Recuperar(int p)   //debe darse un √≠ndice v√°lido
     {
         nodoPtr tmp = cabeza;
         for(int i=1; i<=p; i++)
