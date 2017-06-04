@@ -1,0 +1,314 @@
+//Algoritmos lista indexada:
+ bool Simetrica_Index()
+    {
+        int el = NumElem();
+        int elemFinal = el;
+        int medio = el/2;
+
+        for( int i = 0; i!=medio; i++ )
+        {
+            if(Recuperar(i) != Recuperar(elemFinal)) return false;
+            elemFinal = elemFinal--;
+        }
+        return true;
+    };
+
+    void Eliminar_Repetidos_Index() //algoritmo similar a selección
+    {
+        int ind;
+        for (int i = 0; i <= NumElem(); i++)
+        {
+            ind = i;
+            for (int j = i+1; j<= NumElem(); j++)
+            {
+                if (Recuperar(j) == Recuperar(ind)) Borrar(j);
+            }
+        }
+    }
+
+    ListaIndex<E> Dejar_Repetidos_Index(ListaIndex<E> L) //algoritmo similar a selección
+    {
+        int ind;
+        int p=1;
+        for (int i = 0; i <= NumElem(); i++)
+        {
+            ind = i;
+            for (int j = i+1; j<= NumElem(); j++)
+            {
+                if (Recuperar(j) == Recuperar(ind))
+                {
+                    L.Insertar(p,Recuperar(j));
+                    p++;
+                }
+            }
+        }
+        return L;
+    }
+    void BurbujaOriginal_Index()
+    {
+        bool cambio;
+        for(int i = 1; i<= num_elem; i++ )
+        {
+            cambio = false;
+            for(int j = 1; j<= num_elem-i; j++)
+            {
+                if(Recuperar(j)>Recuperar(j+1))
+                {
+                    Intercambiar(j+1,j);
+                    cambio = true;
+                }
+            }
+            if(cambio==false) break;
+        }
+    };
+
+    void SeleccionRec_Index(int tam, pos_t i)
+    {
+        pos_t menor = i;
+        for(pos_t j = i+1; j<tam; j++)
+        {
+            if(Recuperar(j) < Recuperar(menor)) menor = j;
+        }
+        Intercambiar(menor,i);
+        if(i+1<tam) SeleccionRec_Index(tam,i+1);
+    };
+
+    void Interseccion_Index(ListaIndex<E> L1, ListaIndex<E> L2) //no ordenadas sin repetidos
+    {
+         int tam1 = L1.NumElem();
+         int tam2 = L2.NumElem();
+         int i = 0;
+         int p = 1;
+         int j =0;
+         ListaIndex<E> L3;
+         L1.BurbujaOriginal_Index();
+         L2.BurbujaOriginal_Index();
+         while(i <= tam1 && j<=tam2)
+         {
+             if(L1.Recuperar(i) < L2.Recuperar(i)) i++;
+             if(L2.Recuperar(j) < L1.Recuperar(i)) j++;
+             if(L1.Recuperar(i)==L2.Recuperar(j))
+             {
+                 L3.Insertar(p,L1.Recuperar(i));
+                 i++;
+                 j++;
+                 p++;
+             }
+         }
+         L3.Imprimir();
+    }
+
+    void Union_Index(ListaIndex<E> L1, ListaIndex<E> L2) //ordenadas y sin elementos repetidos
+    {
+        pos_t pos = 1;
+        while (pos<=L2.num_elem)
+        {
+            L1.Insertar(pos,L2.Recuperar(pos));
+            pos++;
+        }
+        L1.Imprimir();
+    }
+
+//Algoritmos lista pos
+
+    bool Simetrica_Pos()
+    {
+        pos_t medio;
+        medio = NumElem() /2;
+        pos_t el = Ultima();
+        pos_t elem_Final = el;
+        for(pos_t i = Primera(); i!=medio; i= Siguiente(i))
+        {
+            if(Recuperar(i) != Recuperar(elem_Final)) return false;
+            elem_Final = Anterior(elem_Final);
+        }
+        return true;
+    };
+
+    void Eliminar_Repetidos_Pos() //algoritmo similar a selección
+    {
+        pos_t ind;
+        for(pos_t i = Primera(); i!=NULL; i = Siguiente(i))
+        {
+            ind = i;
+            for(pos_t j = Siguiente(i); j!=NULL; j=Siguiente(j))
+            {
+                if(Recuperar(j)==Recuperar(ind)) Borrar(j);
+            }
+        }
+    };
+    //fuente de apoyo: http://www.geeksforgeeks.org/remove-duplicates-from-an-unsorted-linked-list/
+
+    ListaPos<E> Dejar_Repetidos_Pos(ListaPos<E> L) //algoritmo similar a selección
+    {
+        pos_t ind;
+        int p =1;
+        for(pos_t i = Primera(); i!=NULL; i = Siguiente(i))
+        {
+            ind = i;
+            for(pos_t j = Siguiente(i); j!=NULL; j=Siguiente(j))
+            {
+                if(Recuperar(j)==Recuperar(ind))
+                {
+                    L.Insertar(p,Recuperar(j));
+                    p++;
+                }
+            }
+        }
+        L.Eliminar_Repetidos_Pos();
+        return L;
+    };
+     
+    void BurbujaOriginal_Pos()
+    {
+
+        bool cambio;
+        pos_t ult = Ultima();
+        for(pos_t i= Primera(); i!=NULL; i = Siguiente(i) )
+        {
+            cambio = false;
+            for(pos_t j = Primera(); j!= ult-1 ; j= Siguiente(j))
+            {
+                if(Recuperar(j)>Recuperar(j+1))
+                {
+                    Intercambiar(j,j+1);
+                    cambio = true;
+                }
+            }
+            if(cambio==false) break;
+        }
+    };
+
+
+
+
+    void SeleccionRec_Pos(int tam, pos_t i)
+    {
+        pos_t menor = i;
+        for(pos_t j = i+1; j<tam; j++)
+        {
+            if(Recuperar(j) < Recuperar(menor)) menor = j;
+        }
+        Intercambiar(menor,i);
+        if(i+1<tam) SeleccionRec_Pos(i+1,tam);
+
+    };
+
+
+    void Interseccion_Pos(ListaPos<E> L1, ListaPos<E> L2) //no ordenadas sin repetidos
+    {
+        int tam1 = L1.NumElem()-1;
+        int tam2 = L2.NumElem()-1;
+        int i = 0;
+        int p = 1;
+        int j =0;
+        ListaPos<E> L3;
+        L1.BurbujaOriginal_Pos();
+        L2.BurbujaOriginal_Pos();
+        while(i < tam1 && j<tam2)
+        {
+            if(L1.Recuperar(i) < L2.Recuperar(i)) i++;
+            if(L2.Recuperar(j) < L1.Recuperar(i)) j++;
+            if(L1.Recuperar(i)==L2.Recuperar(j))
+            {
+                L3.Insertar(p,L1.Recuperar(i));
+                i++;
+                j++;
+                p++;
+            }
+        }
+        L3.Imprimir();
+    }
+
+    void Union_Pos(ListaPos<E> L1, ListaPos<E> L2) //ordenadas y sin elementos repetidos
+    {
+        pos_t pos = Primera();
+        int p=1;
+        while (pos!=L2.Ultima())
+        {
+            L1.Insertar(p,L2.Recuperar(p));
+            p++;
+            pos= Siguiente(pos);
+        }
+       // L1.Eliminar_Repetidos_Pos();
+        L1.Imprimir();
+    }
+
+    void Imprimir()
+    {
+        pos_t pos = Primera();
+        while (pos)
+        {
+            cout << Recuperar(pos) << " ";
+            pos = Siguiente(pos);
+        }
+        cout << endl;
+    }
+
+//algoritmos lista ordenada
+ bool Iguales(ListaOrdenada<E> L2)
+    {
+        bool iguales = true;
+        E i = Primero();
+        E j= Primero();
+        while(i != NULL)
+        {
+            if(j == NULL)
+            {
+                iguales = false;
+                break;
+            }
+            else
+            {
+                if(Siguiente(i) != L2.Siguiente(j))
+                {
+                    iguales = false;
+                    break;
+                }
+                else
+                {
+                    i=Siguiente(i);
+                    j=Siguiente(j);
+                }
+            }
+        }
+        return iguales;
+    }
+
+    bool Pertenece(E elem)
+    {
+        E n = Primero();
+        if(n==NULL)
+        {
+            return 0;
+        }
+        while(n!= NULL)
+        {
+            if(n == elem) return 1;
+            n = Siguiente(n);
+        }
+        return 0;
+    }
+     void Union_Ord(ListaOrdenada<E> L1, ListaOrdenada<E> L2, ListaOrdenada<E> L3) //ordenadas y sin elementos repetidos
+    {
+        E pos = Primero();
+        int p=1;
+        while (pos!=L2.Ultima() && pos!=L1.Ultima())
+        {
+            L3.Insertar(L2.Recuperar(p));
+            L3.Insertar(L1.Recuperar(p));
+            p++;
+            pos= Siguiente(pos);
+        }
+        while(L1.NumElem() < L2.NumElem())
+        {
+            L3.Insertar(L1.Recuperar(p));
+            p++;
+        }
+          while(L1.NumElem() > L2.NumElem())
+        {
+            L3.Insertar(L2.Recuperar(p));
+            p++;
+        }
+        L3.Imprimir();
+    }
